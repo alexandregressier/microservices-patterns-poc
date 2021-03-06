@@ -7,3 +7,6 @@ buildscript {
 bootstrapRefreshVersions()
 
 rootProject.name = "food-to-go"
+include(
+    "ftgo-commons"
+)

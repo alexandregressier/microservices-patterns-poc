@@ -5,7 +5,7 @@ plugins {
     id("io.spring.dependency-management") apply false
 }
 
-tasks.named<Wrapper>("wrapper") {
+tasks.withType<Wrapper> {
     gradleVersion = "${project.extra["versionGradle"]}"
     distributionType = Wrapper.DistributionType.ALL
 }

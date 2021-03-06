@@ -17,9 +17,9 @@ tasks.withType<KotlinCompile> {
         jvmTarget = "${java.sourceCompatibility}"
     }
 }
-tasks.getByName<BootJar>("bootJar") {
+tasks.withType<BootJar> {
     enabled = false
 }
-tasks.getByName<Jar>("jar") {
+tasks.named<Jar>("jar") {
     enabled = true
 }

@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: ftgo-consumer-service
+
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+server:
+  port: 8081
+
+---
+spring:
+  config:
+    activate:
+      on-profile: k8s
+server:
+  port: 80

@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgresql-init
+data:
+  init.sql: |
+    -- FTGO Consumer Service
+    CREATE DATABASE ftgo_consumer_service;
+    CREATE USER ftgo_consumer_service WITH PASSWORD 'ftgo_consumer_service';
+    GRANT ALL PRIVILEGES ON DATABASE ftgo_consumer_service TO ftgo_consumer_service;

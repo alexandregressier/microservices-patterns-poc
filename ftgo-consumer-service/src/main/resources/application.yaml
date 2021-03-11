@@ -60,6 +60,7 @@ logging:
     root: info
     dev.foodtogo: debug
     org.hibernate.SQL: debug
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
 management:
   endpoint:
     health:

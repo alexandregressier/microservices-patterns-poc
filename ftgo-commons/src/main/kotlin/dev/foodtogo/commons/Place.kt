@@ -1,7 +1,6 @@
 package dev.foodtogo.commons
 
 import com.fasterxml.jackson.annotation.JsonIgnore
-import com.neovisionaries.i18n.CountryCode
 import org.hibernate.annotations.CreationTimestamp
 import org.hibernate.annotations.UpdateTimestamp
 import java.util.*
@@ -20,5 +19,5 @@ data class Place(
     @Column(nullable = false) val street: String,
     @Column(nullable = false) val city: String,
     @Column(length = 10, nullable = false) val postalCode: PostalCode,
-    @Column(length = 2, nullable = false) @Enumerated(STRING) val country: CountryCode,
+    @Column(length = 2, nullable = false) @Enumerated(STRING) val country: Country,
 )

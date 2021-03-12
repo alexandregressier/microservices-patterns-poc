@@ -1,10 +1,6 @@
 package dev.foodtogo.service.consumer.domain
 
-import com.neovisionaries.i18n.CountryCode
-import dev.foodtogo.commons.EmailAddress
-import dev.foodtogo.commons.PersonalName
-import dev.foodtogo.commons.PhoneNumber
-import dev.foodtogo.commons.Place
+import dev.foodtogo.commons.*
 import mu.KotlinLogging
 import org.springframework.boot.CommandLineRunner
 import org.springframework.context.annotation.Bean
@@ -32,7 +28,7 @@ class ConsumerRepositoryConfig {
                         street = "1 Infinite Loop",
                         city = "Cupertino",
                         postalCode = "95014",
-                        country = CountryCode.US,
+                        country = Country.US,
                     ),
                 ))}"
             }

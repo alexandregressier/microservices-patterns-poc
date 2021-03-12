@@ -11,7 +11,7 @@ spring:
   config:
     activate.on-profile: local
   datasource:
-    url: jdbc:postgresql://localhost:5432/ftgo_consumer_service
+    url: jdbc:postgresql://localhost/ftgo_consumer_service
 server:
   port: 8081
 logging:

@@ -9,5 +9,6 @@ bootstrapRefreshVersions()
 rootProject.name = "food-to-go"
 include(
     "ftgo-commons",
-    "ftgo-consumer-service"
+    "ftgo-consumer-service",
+    "ftgo-restaurant-service"
 )

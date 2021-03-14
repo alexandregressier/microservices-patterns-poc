@@ -1,0 +1,83 @@
+spring:
+  application:
+    name: ftgo-restaurant-service
+  profiles:
+    active: local,development
+  jackson:
+    default-property-inclusion: non_null
+
+--- # Local
+spring:
+  config:
+    activate.on-profile: local
+  datasource:
+    url: jdbc:postgresql://localhost/ftgo_restaurant_service
+server:
+  port: 8084
+logging:
+  exception-conversion-word: '%rootException'
+
+--- # Kubernetes
+spring:
+  config:
+    activate.on-profile: kubernetes
+  main:
+    banner-mode: off
+  datasource:
+    url: jdbc:postgresql://postgresql/ftgo_restaurant_service
+server:
+  port: 80
+  shutdown: graceful
+logging:
+  pattern:
+    console: "%date{yyyy-MM-dd'T'HH:mm:ss.SSSXXX, UTC} %relative ${LOG_LEVEL_PATTERN:%level} ${PID} --- [%thread] %logger : %message%n%rootException"
+management:
+  endpoint:
+    health:
+      probes:
+        enabled: true
+  health:
+    livenessState:
+      enabled: true
+    readinessState:
+      enabled: true
+
+--- # Development
+spring:
+  config:
+    activate.on-profile: development
+  sleuth:
+    sampler:
+      probability: 1.0
+  datasource:
+    username: ftgo_restaurant_service
+    password: ftgo_restaurant_service
+  jpa:
+    hibernate:
+      ddl-auto: update
+logging:
+  level:
+    root: info
+    dev.foodtogo: debug
+    org.hibernate.SQL: debug
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+management:
+  endpoint:
+    health:
+      show-details: always
+    shutdown:
+      enabled: true
+  endpoints:
+    web.exposure.include: '*'
+
+--- # Production
+spring:
+  config:
+    activate.on-profile: production
+  datasource:
+    username: ftgo_restaurant_service
+    password: CHANGE_ME
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate

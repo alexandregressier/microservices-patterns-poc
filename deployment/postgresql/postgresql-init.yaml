@@ -8,3 +8,8 @@ data:
     CREATE DATABASE ftgo_consumer_service;
     CREATE USER ftgo_consumer_service WITH PASSWORD 'ftgo_consumer_service';
     GRANT ALL PRIVILEGES ON DATABASE ftgo_consumer_service TO ftgo_consumer_service;
+
+    -- FTGO Restaurant Service
+    CREATE DATABASE ftgo_restaurant_service;
+    CREATE USER ftgo_restaurant_service WITH PASSWORD 'ftgo_restaurant_service';
+    GRANT ALL PRIVILEGES ON DATABASE ftgo_restaurant_service TO ftgo_restaurant_service;

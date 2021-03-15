@@ -11,6 +11,17 @@ build:
         paths:
           - ftgo-consumer-service/src
           - ftgo-consumer-service/build.gradle.kts
+
+  - image: gressier/ftgo-restaurant-service
+    buildpacks:
+      builder: gcr.io/paketo-buildpacks/builder:base-platform-api-0.3
+      env:
+        - BP_GRADLE_BUILT_MODULE=ftgo-restaurant-service
+      dependencies:
+        paths:
+          - ftgo-restaurant-service/src
+          - ftgo-restaurant-service/build.gradle.kts
+
 deploy:
   kubectl:
     manifests:

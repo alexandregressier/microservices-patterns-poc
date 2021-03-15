@@ -17,6 +17,8 @@ dependencies {
     // Types
     implementation("com.googlecode.libphonenumber:libphonenumber:_")
     api("com.neovisionaries:nv-i18n:_")
+    api("org.javamoney:moneta:_@pom") { isTransitive = true }
+    api("org.zalando:jackson-datatype-money:_")
 }
 
 tasks.withType<BootJar> {

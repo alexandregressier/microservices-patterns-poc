@@ -1,7 +1,9 @@
 package dev.foodtogo.service.restaurant.domain
 
 import com.fasterxml.jackson.annotation.JsonIgnore
+import com.fasterxml.jackson.annotation.JsonProperty
 import dev.foodtogo.commons.DateTime
+import dev.foodtogo.commons.Money
 import dev.foodtogo.commons.Place
 import org.hibernate.annotations.CreationTimestamp
 import org.hibernate.annotations.UpdateTimestamp
@@ -42,7 +44,7 @@ data class Restaurant(
             @JsonIgnore @Column(nullable = false) @UpdateTimestamp open var updatedOn: DateTime? = null
 
             abstract val name: String
-            abstract val price: Double
+            abstract val price: Money
         }
 
         @Entity
@@ -50,7 +52,7 @@ data class Restaurant(
         @Where(clause = "type = 'dish'")
         data class Dish(
             @Column(nullable = false) override val name: String,
-            @Column(nullable = false) override val price: Double,
+            @Column(nullable = false) override val price: Money,
             val quantity: Int? = null,
         ) : Item()
 
@@ -60,7 +62,7 @@ data class Restaurant(
         data class Drink(
             @Column(nullable = false) override val name: String,
             @Column(name = "quantity") val cL: Int,
-            @Column(nullable = false) override val price: Double,
+            @Column(nullable = false) override val price: Money,
         ) : Item()
 
         @Entity
@@ -68,7 +70,7 @@ data class Restaurant(
         @Where(clause = "type = 'dessert'")
         data class Dessert(
             @Column(nullable = false) override val name: String,
-            @Column(nullable = false) override val price: Double,
+            @Column(nullable = false) override val price: Money,
             val quantity: Int? = null,
         ) : Item()
     }

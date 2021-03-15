@@ -23,7 +23,7 @@ data class Restaurant(
     @JsonIgnore @Column(nullable = false) @UpdateTimestamp val updatedOn: DateTime? = null,
 
     @Column(nullable = false) val name: String,
-    @OneToOne(cascade = [ALL]) val location: Place,
+    @OneToOne(cascade = [ALL]) @JoinColumn(nullable = false) val location: Place,
     @Column(nullable = false) @Enumerated(STRING) val category: Category,
     @Embedded val menu: Menu,
 ) {
@@ -31,17 +31,17 @@ data class Restaurant(
 
     @Embeddable
     data class Menu(
-        @OneToMany(cascade = [ALL]) @JoinColumn(name = "restaurantId") val dishes: Set<Dish>,
-        @OneToMany(cascade = [ALL]) @JoinColumn(name = "restaurantId") val drinks: Set<Drink>,
-        @OneToMany(cascade = [ALL]) @JoinColumn(name = "restaurantId") val desserts: Set<Dessert>,
+        @OneToMany(cascade = [ALL]) @JoinColumn(name = "restaurantId", nullable = false) val dishes: Set<Dish>,
+        @OneToMany(cascade = [ALL]) @JoinColumn(name = "restaurantId", nullable = false) val drinks: Set<Drink>,
+        @OneToMany(cascade = [ALL]) @JoinColumn(name = "restaurantId", nullable = false) val desserts: Set<Dessert>,
     ) {
         @Entity
         @Table(name = "menuItem")
         @DiscriminatorColumn(name = "type")
         abstract class Item {
-            @JsonIgnore @Id @GeneratedValue open var id: MenuItemId? = null
-            @JsonIgnore @Column(nullable = false) @CreationTimestamp open var createdOn: DateTime? = null
-            @JsonIgnore @Column(nullable = false) @UpdateTimestamp open var updatedOn: DateTime? = null
+            @Id @GeneratedValue open val id: MenuItemId? = null
+            @JsonIgnore @Column(nullable = false) @CreationTimestamp open val createdOn: DateTime? = null
+            @JsonIgnore @Column(nullable = false) @UpdateTimestamp open val updatedOn: DateTime? = null
 
             abstract val name: String
             abstract val price: Money
@@ -61,7 +61,7 @@ data class Restaurant(
         @Where(clause = "type = 'drink'")
         data class Drink(
             @Column(nullable = false) override val name: String,
-            @Column(name = "quantity") val cL: Int,
+            @get:JsonProperty("cL") @Column(name = "quantity") val cL: Int? = null,
             @Column(nullable = false) override val price: Money,
         ) : Item()
 

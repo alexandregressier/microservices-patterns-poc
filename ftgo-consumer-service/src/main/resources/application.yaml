@@ -12,6 +12,9 @@ spring:
     activate.on-profile: local
   datasource:
     url: jdbc:postgresql://localhost/ftgo_consumer_service
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
 server:
   port: 8081
 logging:
@@ -25,6 +28,9 @@ spring:
     banner-mode: off
   datasource:
     url: jdbc:postgresql://postgresql/ftgo_consumer_service
+  jpa:
+    hibernate:
+      ddl-auto: update
 server:
   port: 80
   shutdown: graceful
@@ -52,9 +58,6 @@ spring:
   datasource:
     username: ftgo_consumer_service
     password: ftgo_consumer_service
-  jpa:
-    hibernate:
-      ddl-auto: update
 logging:
   level:
     root: INFO

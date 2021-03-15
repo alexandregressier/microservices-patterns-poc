@@ -57,7 +57,7 @@ spring:
       probability: 1.0
   datasource:
     username: ftgo_consumer_service
-    password: ftgo_consumer_service
+    password: 'ftgo_consumer_service'
 logging:
   level:
     root: INFO
@@ -79,7 +79,7 @@ spring:
     activate.on-profile: production
   datasource:
     username: ftgo_consumer_service
-    password: CHANGE_ME
+    password: 'CHANGE_ME'
   jpa:
     open-in-view: false
     hibernate:

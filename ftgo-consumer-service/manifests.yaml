@@ -35,14 +35,20 @@ spec:
           ports:
             - name: http
               containerPort: 80
-          readinessProbe:
+          startupProbe:
             httpGet:
               port: http
-              path: /actuator/health/readiness
+              path: /actuator/health/liveness
+            initialDelaySeconds: 60
+            failureThreshold: 12
           livenessProbe:
             httpGet:
               port: http
               path: /actuator/health/liveness
+          readinessProbe:
+            httpGet:
+              port: http
+              path: /actuator/health/readiness
           lifecycle:
             preStop:
               exec:

@@ -9,10 +9,10 @@ version = "0.1.0-SNAPSHOT"
 
 dependencies {
     // JSON
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+    compileOnly("com.fasterxml.jackson.module:jackson-module-kotlin")
 
     // JPA
-    implementation("org.hibernate:hibernate-core")
+    compileOnly("org.hibernate:hibernate-core")
 
     // Types
     implementation("com.googlecode.libphonenumber:libphonenumber:_")

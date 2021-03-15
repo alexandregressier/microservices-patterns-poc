@@ -11,8 +11,8 @@ dependencies {
     // JSON
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 
-    // SQL
-    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    // JPA
+    implementation("org.hibernate:hibernate-core")
 
     // Types
     implementation("com.googlecode.libphonenumber:libphonenumber:_")

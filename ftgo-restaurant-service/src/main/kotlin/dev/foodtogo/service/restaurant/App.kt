@@ -10,7 +10,7 @@ import org.zalando.jackson.datatype.money.MoneyModule
 
 @SpringBootApplication
 @EntityScan(basePackageClasses = [App::class, Commons::class])
-class App  {
+class App {
     @Bean fun moneyModule(): Module = MoneyModule()
 }
 

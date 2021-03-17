@@ -2,6 +2,7 @@ package dev.foodtogo.service.restaurant.domain
 
 import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonProperty.Access.READ_ONLY
 import dev.foodtogo.commons.DateTime
 import dev.foodtogo.commons.Money
 import dev.foodtogo.commons.Place
@@ -18,7 +19,7 @@ typealias MenuItemId = UUID
 
 @Entity
 data class Restaurant(
-    @Id @GeneratedValue val id: RestaurantId? = null,
+    @JsonProperty(access = READ_ONLY) @Id @GeneratedValue val id: RestaurantId? = null,
     @JsonIgnore @Column(nullable = false) @CreationTimestamp val createdOn: DateTime? = null,
     @JsonIgnore @Column(nullable = false) @UpdateTimestamp val updatedOn: DateTime? = null,
 
@@ -35,11 +36,9 @@ data class Restaurant(
         @OneToMany(cascade = [ALL]) @JoinColumn(name = "restaurantId", nullable = false) val drinks: Set<Drink>,
         @OneToMany(cascade = [ALL]) @JoinColumn(name = "restaurantId", nullable = false) val desserts: Set<Dessert>,
     ) {
-        @Entity
-        @Table(name = "menuItem")
-        @DiscriminatorColumn(name = "type")
+        @Entity @Table(name = "menuItem") @DiscriminatorColumn(name = "type")
         abstract class Item {
-            @Id @GeneratedValue open val id: MenuItemId? = null
+            @JsonProperty(access = READ_ONLY) @Id @GeneratedValue open val id: MenuItemId? = null
             @JsonIgnore @Column(nullable = false) @CreationTimestamp open val createdOn: DateTime? = null
             @JsonIgnore @Column(nullable = false) @UpdateTimestamp open val updatedOn: DateTime? = null
 
@@ -47,27 +46,21 @@ data class Restaurant(
             abstract val price: Money
         }
 
-        @Entity
-        @DiscriminatorValue("dish")
-        @Where(clause = "type = 'dish'")
+        @Entity @DiscriminatorValue("dish") @Where(clause = "type = 'dish'")
         data class Dish(
             @Column(nullable = false) override val name: String,
             @Column(nullable = false) override val price: Money,
             val quantity: Int? = null,
         ) : Item()
 
-        @Entity
-        @DiscriminatorValue("drink")
-        @Where(clause = "type = 'drink'")
+        @Entity @DiscriminatorValue("drink") @Where(clause = "type = 'drink'")
         data class Drink(
             @Column(nullable = false) override val name: String,
             @get:JsonProperty("cL") @Column(name = "quantity") val cL: Int? = null,
             @Column(nullable = false) override val price: Money,
         ) : Item()
 
-        @Entity
-        @DiscriminatorValue("dessert")
-        @Where(clause = "type = 'dessert'")
+        @Entity @DiscriminatorValue("dessert") @Where(clause = "type = 'dessert'")
         data class Dessert(
             @Column(nullable = false) override val name: String,
             @Column(nullable = false) override val price: Money,

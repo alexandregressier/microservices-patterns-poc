@@ -1,6 +1,8 @@
 package dev.foodtogo.commons
 
 import com.fasterxml.jackson.annotation.JsonIgnore
+import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonProperty.Access.READ_ONLY
 import org.hibernate.annotations.CreationTimestamp
 import org.hibernate.annotations.UpdateTimestamp
 import java.util.*
@@ -12,7 +14,7 @@ typealias PostalCode = String
 
 @Entity
 data class Place(
-    @Id @GeneratedValue val id: PlaceId? = null,
+    @JsonProperty(access = READ_ONLY) @Id @GeneratedValue val id: PlaceId? = null,
     @JsonIgnore @Column(nullable = false) @CreationTimestamp val createdOn: DateTime? = null,
     @JsonIgnore @Column(nullable = false) @UpdateTimestamp val updatedOn: DateTime? = null,
 

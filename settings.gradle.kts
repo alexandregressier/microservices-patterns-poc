@@ -10,5 +10,6 @@ rootProject.name = "food-to-go"
 include(
     "ftgo-commons",
     "ftgo-consumer-service",
-    "ftgo-restaurant-service"
+    "ftgo-restaurant-service",
+    "ftgo-order-service"
 )

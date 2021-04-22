@@ -12,7 +12,7 @@ group = "dev.foodtogo"
 java.sourceCompatibility = JavaVersion.VERSION_15
 
 repositories {
-    jcenter()
+    mavenCentral()
 }
 
 dependencies {

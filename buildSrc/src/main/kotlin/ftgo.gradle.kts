@@ -9,7 +9,7 @@ plugins {
 }
 
 group = "dev.foodtogo"
-java.sourceCompatibility = JavaVersion.VERSION_11
+java.sourceCompatibility = JavaVersion.VERSION_15
 
 repositories {
     jcenter()

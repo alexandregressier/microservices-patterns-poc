@@ -11,5 +11,5 @@ include(
     "ftgo-commons",
     "ftgo-consumer-service",
     "ftgo-restaurant-service",
-    "ftgo-order-service"
+    "ftgo-order-service",
 )
